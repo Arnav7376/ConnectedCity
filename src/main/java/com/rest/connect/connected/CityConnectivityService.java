@@ -15,6 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+/**
+* The CityConnectivityService provides services API to load file and prepared data for finding 
+* routes connecting given cities.
+* @author Santosh
+* @version 1.0 
+*/
 @Service
 public class CityConnectivityService {
 
@@ -27,6 +33,12 @@ public class CityConnectivityService {
 
 	private Route route = new Route();
 	
+	/**
+	 * getCitiesConnectivityData(String fileName) is reading file passed as an argument and returns List of arrays of cities.
+	 * @param fileName
+	 * @return
+	 * @throws Exception
+	 */
 	public List<List<String>> getCitiesConnectivityData(String fileName) throws Exception{
 		fullPathList = new ArrayList();
 		fullPath = new StringBuffer();
@@ -47,8 +59,18 @@ public class CityConnectivityService {
 		return citiesConnectivity;
 	}
 	
-	public void match(String from, String to, List<List<String>> routes) {
+	/**
+	 * match(String from, String to, List<List<String>> routes) function is able to search routes between two cities(from,to) from List of data passed.
+	 * and sets result to Route bean.
+	 * @param from
+	 * @param to
+	 * @param routes
+	 * @throws Exception 
+	 */
+	public void match(String from, String to, List<List<String>> routes) throws Exception {
 		String nextOrigin="";
+		if(routes==null || from == null || to == null)
+			throw new Exception("Please correct search criteria");
 		
 		for(int i=0; i<routes.size(); i++) {
 			List<String> routeRecord = routes.get(i);

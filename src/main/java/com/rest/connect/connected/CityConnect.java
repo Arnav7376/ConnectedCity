@@ -36,7 +36,6 @@ public class CityConnect {
 		if(origin!=null && destination!=null) {
 			connectivityService.match(origin, destination, totalRouts); 
 		}else {
-			//throw new Exception("Origin/Destination missing in uri path");
 			return "Origin/Destination missing in uri path";
 		}
 		System.out.println("getFoundMessage :"+route.getFoundMessage());
